@@ -40,8 +40,10 @@ export default {
 			}
 			// copy search query
 			let copiedQuery = (' ' + this.searchQuery).slice(1);
-			// remove/ignore special chars
-			copiedQuery = copiedQuery.toLowerCase().replaceAll(/[^a-z]/g, '');
+			copiedQuery = copiedQuery
+				.toLowerCase()
+				.replaceAll(/[^a-z\s]/g, '') // remove/ignore special chars
+				.replaceAll(/\s/g, '_');
 
 			// this is the worst search algorithm someone has made but idk
 			// how to make a better one so I'm sticking with this
