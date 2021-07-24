@@ -1,6 +1,5 @@
 <template>
 	<h1>Twemoji Search!</h1>
-	<br /><br />
 	<form v-on:submit.prevent="findSearch">
 		<input
 			type="text"
@@ -9,10 +8,11 @@
 			@keyup="findSearch"
 		/>
 	</form>
-	<br />
-	<ul v-show="hasResults">
+	<ul class="res" v-show="hasResults">
 		<li v-for="em in queriedEmojis" v-bind:key="em">
-			<a v-bind:href="em.url.png" download> {{ em.name }} {{ em.emoji }}</a>
+			<a v-bind:href="em.url.png" download>
+				{{ em.name }} <img v-bind:src="em.url.png" class="emoji" />
+			</a>
 		</li>
 	</ul>
 	<h3 v-show="!hasResults">Welp, no results!</h3>
@@ -41,11 +41,11 @@ export default {
 			// copy search query
 			let copiedQuery = (' ' + this.searchQuery).slice(1);
 			// remove/ignore special chars
-			copiedQuery = copiedQuery.toLowerCase().replace(/[^a-z]/g, '');
+			copiedQuery = copiedQuery.toLowerCase().replaceAll(/[^a-z]/g, '');
 
 			// this is the worst search algorithm someone has made but idk
 			// how to make a better one so I'm sticking with this
-			let results = Object.keys(this.emojiMap).filter(function(emojiName) {
+			let results = Object.keys(this.emojiMap).filter(function (emojiName) {
 				// check if the query is a substring of the emoji name
 				// to count as a result
 				return emojiName.includes(copiedQuery);
@@ -64,3 +64,7 @@ export default {
 	},
 };
 </script>
+
+<style>
+@import './style.css';
+</style>

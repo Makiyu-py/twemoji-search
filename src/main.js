@@ -13,7 +13,7 @@ fetchEmojiInfo().then((data) => {
 		if (emojiCode === undefined) return;
 		emojiCode = emojiCode.codes;
 		newEmojiObject[key] = {
-			name: key.replace('-', ' '),
+			name: key.replaceAll('_', ' '),
 			emoji: emojiMap[key],
 			url: {
 				png: `https://twemoji.maxcdn.com/v/latest/72x72/${emojiCode}.png`,
