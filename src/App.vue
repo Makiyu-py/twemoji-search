@@ -60,9 +60,14 @@ export default {
 				// to count as a result
 				return emojiName.includes(copiedQuery);
 			});
+			if (results.length === 0) {
+				this.queriedEmojis = [];
+				this.hasResults = false;
+				return;
+			}
 			if (results.length > 10) results = results.slice(0, 10);
 			this.queriedEmojis = results.map((e) => this.emojiMap[e]);
-			if (this.queriedEmojis.length > 0) this.hasResults = true;
+			this.hasResults = true;
 		},
 	},
 	data() {
