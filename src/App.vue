@@ -16,6 +16,14 @@
 		</li>
 	</ul>
 	<h3 v-show="!hasResults">Welp, no results!</h3>
+	<footer class="footer">
+		Made with
+		<img v-bind:src="emojiMap['blue_heart'].url.png" class="emoji" /> (and
+		<a href="https://v3.vuejs.org/" style="text-decoration-color: #42b883"
+			>Vue.js</a
+		>) by
+		<a href="https://github.com/Makiyu-py">Makiyu</a>
+	</footer>
 </template>
 
 <script>

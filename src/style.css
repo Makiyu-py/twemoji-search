@@ -43,7 +43,17 @@ a {
 
 img.emoji {
 	position: relative;
-	width: 0.85em;
+	width: 1em;
 	vertical-align: middle;
-	bottom: 2px; /* place image as high as the text*/
+	bottom: 0.1em; /* place image as high as the text*/
+}
+
+footer.footer {
+	font-weight: bold;
+	font-size: 0.55em;
+	padding-top: 20%;
+	text-align: center;
+}
+footer.footer a {
+	text-decoration-thickness: 0.2em;
 }
