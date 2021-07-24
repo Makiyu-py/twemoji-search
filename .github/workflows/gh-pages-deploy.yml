@@ -1,0 +1,26 @@
+name: Github Pages Deployment
+
+on: [push]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2.3.1
+      - name: Setting-up Yarn
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'yarn'
+      - run: yarn
+      - run: yarn run build
+
+      - name: Deploying to Github Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages # The branch the action should deploy to.
+          folder: dist # The folder the action should deploy.
+          clean: true # Automatically remove deleted files from the deploy branch

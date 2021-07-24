@@ -18,4 +18,4 @@ Search an emoji name and get its twemoji graphic!
     - [ ] More info about this repo
     - [ ] Setup Guide (it's just `yarn run serve` lol)
 
-- [ ] Add a script to auto-deploy to Github Pages
+- [x] Add a script to auto-deploy to Github Pages
