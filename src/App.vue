@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import binarySearch from './binarysearch';
 // current idea on how to implement this thing
 // 1. we get all code points and emoji info
 //	  (https://api.github.com/repos/twitter/twemoji/git/trees/fc6688975af4c908eae5a144f6df6e71bdb8a428)
@@ -35,7 +36,10 @@
 //    is searching
 // 3. we get all the code points of the map from the emoji info
 // 4. check/convert if it's a valid code point with the code points we got
-// 4. make a object with the links for the downloadable emojis https://twemoji.maxcdn.com/v/latest/svg/{codes}.svg
+// 5. make a object with the links for the downloadable emojis https://twemoji.maxcdn.com/v/latest/svg/{codes}.svg
+
+// inspiration for this implementation is from Sebastian Aigner's twemoji-amazing
+// 	(https://github.com/SebastianAigner/twemoji-amazing/tree/master/src/main/kotlin)
 
 export default {
 	name: 'App',
@@ -53,13 +57,12 @@ export default {
 				.replaceAll(/[^a-z\s]/g, '') // remove/ignore special chars
 				.replaceAll(/\s/g, '_');
 
-			// this is the worst search algorithm someone has made but idk
-			// how to make a better one so I'm sticking with this
-			let results = Object.keys(this.emojiMap).filter(function (emojiName) {
-				// check if the query is a substring of the emoji name
-				// to count as a result
-				return emojiName.includes(copiedQuery);
+			// match results using binary search (https://en.wikipedia.org/wiki/Binary_search_algorithm)
+			let results = binarySearch({
+				needle: copiedQuery,
+				haystack: Object.keys(this.emojiMap).sort(),
 			});
+
 			if (results.length === 0) {
 				this.queriedEmojis = [];
 				this.hasResults = false;
