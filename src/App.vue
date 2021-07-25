@@ -11,7 +11,7 @@
 	</form>
 	<ul class="res" v-show="hasResults">
 		<li v-for="em in queriedEmojis" v-bind:key="em">
-			<a v-bind:href="em.url.png" download>
+			<a v-bind:href="em.url.png" target="_blank">
 				{{ em.name }} <img v-bind:src="em.url.png" class="emoji" />
 			</a>
 		</li>
@@ -20,10 +20,13 @@
 	<footer class="footer">
 		Made with
 		<img v-bind:src="emojiMap['blue_heart'].url.png" class="emoji" /> (and
-		<a href="https://v3.vuejs.org/" style="text-decoration-color: #42b883"
+		<a
+			href="https://v3.vuejs.org/"
+			target="_blank"
+			style="text-decoration-color: #42b883"
 			>Vue.js</a
 		>) by
-		<a href="https://github.com/Makiyu-py">Makiyu</a>
+		<a href="https://github.com/Makiyu-py" target="_blank">Makiyu</a>
 	</footer>
 </template>
 
