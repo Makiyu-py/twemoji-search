@@ -2,6 +2,7 @@
 	<h1>Twemoji Search!</h1>
 	<form v-on:submit.prevent="findSearch">
 		<input
+			style="text-align: center"
 			type="text"
 			v-model="searchQuery"
 			placeholder="smile"

@@ -11,7 +11,7 @@ Search an emoji name and get its twemoji graphic!
   - [ ] Add CSS
   - [ ] Improve HTML further (with proper design)
     - [ ] Emoji cards
-    - [ ] Input bar's positioning (it shouldn't be stretching from the center... it feels wrong)
+    - [x] Input bar's positioning (it shouldn't be stretching from the center... it feels wrong)
 
 - [ ] Add more stuff to this repository
 
