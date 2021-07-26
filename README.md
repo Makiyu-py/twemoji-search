@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="/public/logo.svg">
+    <img src="/public/logo.svg" width="130px">
 </p>
 <h1 align="center">twemoji search 🔷🔎</h1>
 

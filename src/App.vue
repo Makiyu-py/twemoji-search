@@ -1,5 +1,13 @@
 <template>
-	<h1>Twemoji Search!</h1>
+	<h1>
+		Twemoji Search!
+		<img
+			:src="`${getPublicPath()}logo.svg`"
+			alt="logo"
+			class="emoji"
+			style="margin-left: 0.1em"
+		/>
+	</h1>
 	<form v-on:submit.prevent="findSearch">
 		<input
 			style="text-align: center"
@@ -48,6 +56,10 @@ export default {
 	name: 'App',
 	components: { emojiCard },
 	methods: {
+		// the `publicPath` variable always returned undefined so I made this method
+		getPublicPath() {
+			return process.env.NODE_ENV === 'production' ? '/twemoji-search/' : '/';
+		},
 		findSearch() {
 			if (this.searchQuery.length === 0) {
 				this.queriedEmojis = [];
