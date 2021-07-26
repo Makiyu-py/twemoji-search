@@ -1,8 +1,9 @@
-# twemoji-search
+<p align="center">
+    <img src="/public/logo.svg">
+</p>
+<h1 align="center">twemoji search 🔷🔎</h1>
 
 Search an emoji name and get its twemoji graphic!
-
-~~currently under development pls ignore this ty~~
 
 ### Setting-up
 
