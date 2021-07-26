@@ -61,11 +61,21 @@ export default {
 				.replaceAll(/[^a-z\s]/g, '') // remove/ignore special chars
 				.replaceAll(/\s/g, '_');
 
-			// match results using binary search (https://en.wikipedia.org/wiki/Binary_search_algorithm)
-			let results = binarySearch({
-				needle: copiedQuery,
-				haystack: Object.keys(this.emojiMap).sort(),
-			});
+			function sortResults(res) {
+				// put the "most relevant" on top
+				let startsArr = binarySearch({ needle: copiedQuery, haystack: res });
+
+				return startsArr.concat(res.filter((x) => !startsArr.includes(x)));
+			}
+
+			// match results using filter function
+			let results = sortResults(
+				Object.keys(this.emojiMap)
+					.sort()
+					.filter((x) => {
+						return x.includes(copiedQuery);
+					})
+			);
 
 			if (results.length === 0) {
 				this.queriedEmojis = [];
