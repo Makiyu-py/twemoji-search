@@ -19,13 +19,17 @@
 	</form>
 	<ul class="res" v-show="hasResults">
 		<li v-for="em in queriedEmojis" v-bind:key="em">
-			<emojiCard :info="em"></emojiCard>
+			<emojiCard :info="em['item']"></emojiCard>
 		</li>
 	</ul>
 	<h3 v-show="!hasResults">Welp, no results!</h3>
 	<footer class="footer">
 		Made with
-		<img v-bind:src="emojiMap['blue_heart'].url.png" class="emoji" /> (and
+		<img
+			v-bind:src="emojiArray.find((x) => x.name === 'blue heart').url.png"
+			class="emoji"
+		/>
+		(and
 		<a
 			href="https://v3.vuejs.org/"
 			target="_blank"
@@ -38,7 +42,6 @@
 
 <script>
 import emojiCard from './components/emojiCard.vue';
-import binarySearch from './binarysearch';
 // current idea on how to implement this thing
 // 1. we get all code points and emoji info
 //	  (https://api.github.com/repos/twitter/twemoji/git/trees/fc6688975af4c908eae5a144f6df6e71bdb8a428)
@@ -73,29 +76,14 @@ export default {
 				.replaceAll(/[^a-z\s]/g, '') // remove/ignore special chars
 				.replaceAll(/\s/g, '_');
 
-			function sortResults(res) {
-				// put the "most relevant" on top
-				let startsArr = binarySearch({ needle: copiedQuery, haystack: res });
-
-				return startsArr.concat(res.filter((x) => !startsArr.includes(x)));
-			}
-
-			// match results using filter function
-			let results = sortResults(
-				Object.keys(this.emojiMap)
-					.sort()
-					.filter((x) => {
-						return x.includes(copiedQuery);
-					})
-			);
-
+			let results = this.fuzzy.search(copiedQuery);
 			if (results.length === 0) {
 				this.queriedEmojis = [];
 				this.hasResults = false;
 				return;
 			}
 			if (results.length > 10) results = results.slice(0, 10);
-			this.queriedEmojis = results.map((e) => this.emojiMap[e]);
+			this.queriedEmojis = results;
 			this.hasResults = true;
 		},
 	},
