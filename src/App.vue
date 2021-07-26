@@ -11,9 +11,7 @@
 	</form>
 	<ul class="res" v-show="hasResults">
 		<li v-for="em in queriedEmojis" v-bind:key="em">
-			<a v-bind:href="em.url.png" target="_blank">
-				{{ em.name }} <img v-bind:src="em.url.png" class="emoji" />
-			</a>
+			<emojiCard :info="em"></emojiCard>
 		</li>
 	</ul>
 	<h3 v-show="!hasResults">Welp, no results!</h3>
@@ -31,6 +29,7 @@
 </template>
 
 <script>
+import emojiCard from './components/emojiCard.vue';
 import binarySearch from './binarysearch';
 // current idea on how to implement this thing
 // 1. we get all code points and emoji info
@@ -47,6 +46,7 @@ import binarySearch from './binarysearch';
 
 export default {
 	name: 'App',
+	components: { emojiCard },
 	methods: {
 		findSearch() {
 			if (this.searchQuery.length === 0) {
