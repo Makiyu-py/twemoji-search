@@ -3,6 +3,8 @@ import App from './App.vue';
 import Fuse from 'fuse.js';
 import { fetchEmojiInfo } from './fetcher';
 
+import './style.css';
+
 const app = createApp(App);
 
 fetchEmojiInfo().then((data) => {
