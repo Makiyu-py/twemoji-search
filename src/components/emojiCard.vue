@@ -2,16 +2,13 @@
 	<div class="card">
 		<img :src="info.url.png" />
 		<div class="text">
-			<a :href="info.url.png" target="_blank">{{ info.name }}</a>
+			<!-- add underlines with no redirects lmao-->
+			<a>{{ info.name }}</a>
 		</div>
 		<br />
 		<div class="btns">
-			<form :action="info.url.png" target="_blank">
-				<input type="submit" value="PNG Download" />
-			</form>
-			<form :action="info.url.svg" target="_blank">
-				<input type="submit" value="SVG Download" />
-			</form>
+			<a class="dwnld-btn" :href="info.url.png" target="_blank">PNG</a>
+			<a class="dwnld-btn" :href="info.url.svg" target="_blank">SVG</a>
 		</div>
 	</div>
 </template>
@@ -53,11 +50,25 @@ div.card .btns {
 div.card .text {
 	margin-top: 1.5em;
 }
-div.card .btns form {
+
+/* from https://fdossena.com/?p=html5cool/buttons/i.frag */
+a.dwnld-btn {
 	display: block;
+	padding: 0.3em 1.2em;
+	margin: 0 1em 0.4em 0;
+	border-radius: 2em;
+	box-sizing: border-box;
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 0.7em;
+	background-color: #4eb5f1;
+	transition: all 0.2s;
 }
-div.card .btns form:not(:last-child) {
-	margin-right: 0.45em;
+a.dwnld-btn:hover {
+	background-color: #4095c6;
 }
 
+div.card .btns a:not(:last-child) {
+	margin-bottom: 0.45em;
+}
 </style>

@@ -51,25 +51,6 @@ yarn dlx serve -s dist -l 8080
 
 then once again, go to `http://localhost:8080/`!
 
-### To-Do
-
-- [ ] Improve UX + UI
-
-  - [ ] Add CSS
-  - [ ] Improve HTML further (with proper design)
-    - [x] Emoji cards
-    - [x] Input bar's positioning (it shouldn't be stretching from the center... it feels wrong)
-
-- [ ] Add more stuff to this repository
-
-  - [x] License
-  - [ ] A _proper README_
-
-    - [ ] More info about this repo
-    - [x] Setup Guide (it's just `yarn run serve` lol)
-
-- [x] Add a script to auto-deploy to Github Pages
-
 ### License
 
 This project is licensed under the [MIT License](/LICENSE).
