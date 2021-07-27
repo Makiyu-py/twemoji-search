@@ -39,7 +39,7 @@ ul.res li:not(:last-child) {
 a {
 	color: #000;
 	text-underline-offset: 0.12em;
-	text-decoration: underline var(--twt-blue) 0.12em;
+	text-decoration: underline var(--twt-blue) 0.2em;
 }
 
 img.emoji {
@@ -54,7 +54,4 @@ footer.footer {
 	font-size: 0.55em;
 	padding-top: 20%;
 	text-align: center;
-}
-footer.footer a {
-	text-decoration-thickness: 0.2em;
 }
