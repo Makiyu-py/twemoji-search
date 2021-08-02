@@ -36,7 +36,12 @@
 			style="text-decoration-color: #42b883"
 			>Vue.js</a
 		>) by
-		<a href="https://github.com/Makiyu-py" target="_blank">Makiyu</a>
+		<a
+			href="https://github.com/Makiyu-py"
+			style="text-decoration-color: #3b5375"
+			target="_blank"
+			>Makiyu</a
+		>
 	</footer>
 </template>
 
