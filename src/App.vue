@@ -8,25 +8,31 @@
 			style="margin-left: 0.1em"
 		/>
 	</h1>
-	<form v-on:submit.prevent="findSearch">
-		<input
-			style="text-align: center"
-			type="text"
-			v-model="searchQuery"
-			placeholder="smile"
-			@keyup="findSearch"
-		/>
-	</form>
-	<ul class="res" v-show="hasResults">
-		<li v-for="em in queriedEmojis" v-bind:key="em">
-			<emojiCard :info="em['item']"></emojiCard>
-		</li>
-	</ul>
-	<h3 v-show="!hasResults">Welp, no results!</h3>
+	<div v-if="loading">
+		<br>
+		<h3>Loading... ✨</h3>
+	</div>
+	<div v-else>
+		<form v-on:submit.prevent="findSearch">
+			<input
+				style="text-align: center"
+				type="text"
+				v-model="searchQuery"
+				placeholder="smile"
+				@keyup="findSearch"
+			/>
+		</form>
+		<ul class="res" v-show="hasResults">
+			<li v-for="em in queriedEmojis" v-bind:key="em">
+				<emojiCard :info="em['item']"></emojiCard>
+			</li>
+		</ul>
+		<h3 v-show="!hasResults">Welp, no results!</h3>
+	</div>
 	<footer class="footer">
 		Made with
 		<img
-			v-bind:src="emojiArray.find((x) => x.name === 'blue heart').url.png"
+			src="https://twemoji.maxcdn.com/v/latest/72x72/1f499.png"
 			class="emoji"
 		/>
 		(and
@@ -59,6 +65,8 @@ import emojiCard from './components/emojiCard.vue';
 
 // inspiration for this implementation is from Sebastian Aigner's twemoji-amazing
 // 	(https://github.com/SebastianAigner/twemoji-amazing/tree/master/src/main/kotlin)
+import Fuse from 'fuse.js';
+import { fetchEmojiInfo } from './fetcher';
 
 export default {
 	name: 'App',
@@ -66,7 +74,9 @@ export default {
 	methods: {
 		// the `publicPath` variable always returned undefined so I made this method
 		getPublicPath() {
-			return process.env.NODE_ENV === 'production' ? '/twemoji-search/' : '/';
+			return process.env.NODE_ENV === 'production'
+				? '/twemoji-search/'
+				: '/';
 		},
 		findSearch() {
 			if (this.searchQuery.length === 0) {
@@ -94,10 +104,40 @@ export default {
 	},
 	data() {
 		return {
+			loading: true,
 			hasResults: false,
 			queriedEmojis: [],
 			searchQuery: '',
 		};
+	},
+	mounted() {
+		fetchEmojiInfo().then((data) => {
+			let emojiMap = require('emoji-name-map').emoji;
+			let emojiArray = [];
+			Object.keys(emojiMap).forEach((key) => {
+				// console.log	(key);
+				let emojiCode = data.find((x) => x.char === emojiMap[key]);
+				if (emojiCode === undefined) return;
+				emojiCode = emojiCode.codes;
+				emojiArray.push({
+					name: key.replaceAll('_', ' '),
+					emoji: emojiMap[key],
+					url: {
+						png: `https://twemoji.maxcdn.com/v/latest/72x72/${emojiCode}.png`,
+						svg: `https://twemoji.maxcdn.com/v/latest/svg/${emojiCode}.svg`,
+					},
+					cp: emojiCode,
+				});
+			});
+
+			this.emojiArray = emojiArray;
+			this.charInfos = data;
+			this.fuzzy = new Fuse(emojiArray, {
+				threshold: 0.2,
+				keys: ['name'],
+			});
+			this.loading = false;
+		});
 	},
 };
 </script>
