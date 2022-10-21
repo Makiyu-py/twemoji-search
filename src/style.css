@@ -27,31 +27,42 @@ input[type='text']:focus {
 	outline: none;
 }
 
-ul.res {
-	list-style-type: none;
+.placeholder-text {
+	font-weight: 500;
 	margin-top: 1.5em;
 }
 
-ul.res li:not(:last-child) {
+.res {
+	margin-top: 1.5em;
+}
+
+.res .card {
 	margin-bottom: 0.8em;
 }
 
 a {
 	color: #000;
-	text-underline-offset: 0.12em;
+	text-underline-offset: 0.2em;
 	text-decoration: underline var(--twt-blue) 0.2em;
 }
 
 img.emoji {
 	position: relative;
-	width: 1em;
+	width: 1.2em;
 	vertical-align: middle;
 	bottom: 0.1em; /* place image as high as the text*/
 }
 
-footer.footer {
+.not-footer {
+	min-height: 91vh;
+	display: flex;
+	flex-direction: column;
+}
+
+footer {
+	margin-top: 2vh;
+	margin-bottom: 2vh;
 	font-weight: bold;
 	font-size: 0.55em;
-	padding-top: 20%;
 	text-align: center;
 }

@@ -31,7 +31,7 @@ div.card {
 	grid-template-columns: auto auto auto auto;
 	border-radius: 0.5rem;
 	width: 20em;
-	box-shadow: 0 0.4em 0.7em rgba(0, 0, 0, 0.356);
+	background-color: aliceblue;
 }
 div.card img {
 	margin: 1em 0 1em 0.8em;

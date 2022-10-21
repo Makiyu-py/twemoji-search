@@ -1,35 +1,38 @@
 <template>
-	<h1>
-		Twemoji Search!
-		<img
-			:src="`${getPublicPath()}logo.svg`"
-			alt="logo"
-			class="emoji"
-			style="margin-left: 0.1em"
-		/>
-	</h1>
-	<div v-if="loading">
-		<br>
-		<h3>Loading... ✨</h3>
-	</div>
-	<div v-else>
-		<form v-on:submit.prevent="findSearch">
-			<input
-				style="text-align: center"
-				type="text"
-				v-model="searchQuery"
-				placeholder="smile"
-				@keyup="findSearch"
+	<div class="not-footer">
+		<h1>
+			Twemoji Search!
+			<img
+				:src="`${getPublicPath()}logo.svg`"
+				alt="logo"
+				class="emoji"
+				style="margin-left: 0.1em"
 			/>
-		</form>
-		<ul class="res" v-show="hasResults">
-			<li v-for="em in queriedEmojis" v-bind:key="em">
-				<emojiCard :info="em['item']"></emojiCard>
-			</li>
-		</ul>
-		<h3 v-show="!hasResults">Welp, no results!</h3>
+		</h1>
+		<div class="placeholder-text" v-if="loading">Loading... ✨</div>
+		<div v-else>
+			<form v-on:submit.prevent="findSearch">
+				<input
+					style="text-align: center"
+					type="text"
+					v-model="searchQuery"
+					placeholder="smile"
+					@keyup="findSearch"
+				/>
+			</form>
+			<div class="res" v-show="hasResults">
+				<emojiCard
+					v-for="em in queriedEmojis"
+					v-bind:key="em"
+					:info="em['item']"
+				></emojiCard>
+			</div>
+			<div class="placeholder-text" v-show="!hasResults">
+				Welp, no results (yet)!
+			</div>
+		</div>
 	</div>
-	<footer class="footer">
+	<footer>
 		Made with
 		<img
 			src="https://twemoji.maxcdn.com/v/latest/72x72/1f499.png"
