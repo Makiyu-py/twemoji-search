@@ -13,7 +13,6 @@
 	"dependencies": {
 		"@vue/cli-service": "^4.5.13",
 		"axios": "^0.21.1",
-		"emoji-name-map": "^1.2.9",
 		"emojibase": "^6.1.0",
 		"fuse.js": "^6.4.6",
 		"vue": "^3.0.0"
