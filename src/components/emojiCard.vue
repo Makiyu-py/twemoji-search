@@ -22,40 +22,47 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 div.card {
 	margin: auto;
+	margin-bottom: 0.8em;
 	text-align: left;
 	position: relative;
 	display: grid;
 	grid-template-columns: auto auto auto auto;
 	border-radius: 0.5rem;
+	height: 5em;
 	width: 20em;
 	background-color: aliceblue;
 }
-div.card img {
-	margin: 1em 0 1em 0.8em;
+img {
+	margin-left: 1em;
 	width: 3em;
+	/* vertically align img */
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 }
-div.card .text {
+.text {
 	text-align: center;
-	display: block;
-	margin-left: 0.5em;
+	padding-inline: 1em;
+	line-height: 1.3;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
-div.card .btns {
-	margin-top: 1em;
-	margin-right: 0.5em;
-	justify-self: end;
-}
-div.card .text {
-	margin-top: 1.5em;
+.btns {
+	margin-right: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 /* from https://fdossena.com/?p=html5cool/buttons/i.frag */
 a.dwnld-btn {
 	display: block;
 	padding: 0.3em 1.2em;
-	margin: 0 1em 0.4em 0;
 	border-radius: 2em;
 	box-sizing: border-box;
 	text-decoration: none;
@@ -68,7 +75,7 @@ a.dwnld-btn:hover {
 	background-color: #4095c6;
 }
 
-div.card .btns a:not(:last-child) {
+.btns a:not(:last-child) {
 	margin-bottom: 0.45em;
 }
 </style>

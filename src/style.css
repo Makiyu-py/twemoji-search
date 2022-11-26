@@ -36,10 +36,6 @@ input[type='text']:focus {
 	margin-top: 1.5em;
 }
 
-.res .card {
-	margin-bottom: 0.8em;
-}
-
 a {
 	color: #000;
 	text-underline-offset: 0.2em;
