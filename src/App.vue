@@ -69,7 +69,7 @@ import emojiCard from './components/emojiCard.vue';
 // inspiration for this implementation is from Sebastian Aigner's twemoji-amazing
 // 	(https://github.com/SebastianAigner/twemoji-amazing/tree/master/src/main/kotlin)
 import Fuse from 'fuse.js';
-import { fetchEmojiInfo } from './fetcher';
+import { fetchEmojiInfo } from './fetcher.js';
 
 export default {
 	name: 'App',
@@ -115,30 +115,18 @@ export default {
 	},
 	mounted() {
 		fetchEmojiInfo().then((data) => {
-			let emojiMap = require('emoji-name-map').emoji;
-			let emojiArray = [];
-			Object.keys(emojiMap).forEach((key) => {
-				// console.log	(key);
-				let emojiCode = data.find((x) => x.char === emojiMap[key]);
-				if (emojiCode === undefined) return;
-				emojiCode = emojiCode.codes;
-				emojiArray.push({
-					name: key.replaceAll('_', ' '),
-					emoji: emojiMap[key],
-					url: {
-						png: `https://twemoji.maxcdn.com/v/latest/72x72/${emojiCode}.png`,
-						svg: `https://twemoji.maxcdn.com/v/latest/svg/${emojiCode}.svg`,
-					},
-					cp: emojiCode,
-				});
-			});
-
-			this.emojiArray = emojiArray;
-			this.charInfos = data;
-			this.fuzzy = new Fuse(emojiArray, {
+			data = data.map((e) => ({
+				...e,
+				url: {
+					png: `https://twemoji.maxcdn.com/v/latest/72x72/${e.hexcode.toLowerCase()}.png`,
+					svg: `https://twemoji.maxcdn.com/v/latest/svg/${e.hexcode.toLowerCase()}.svg`,
+				}
+			}));
+			this.fuzzy = new Fuse(data, {
 				threshold: 0.2,
-				keys: ['name'],
+				keys: ['label'],
 			});
+			this.emojis = data;
 			this.loading = false;
 		});
 	},

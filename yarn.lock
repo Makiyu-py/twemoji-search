@@ -3038,6 +3038,7 @@ __metadata:
     "@vue/composition-api": ^1.0.4
     axios: ^0.21.1
     emoji-name-map: ^1.2.9
+    emojibase: ^6.1.0
     fuse.js: ^6.4.6
     vue: ^3.0.0
   languageName: unknown
@@ -3065,6 +3066,13 @@ __metadata:
   version: 8.0.0
   resolution: "emoji-regex@npm:8.0.0"
   checksum: 87cf3f89efb8ba028075b3dc1713e2c5609af94cbc129b1f00c3113d01dbe4bf85c9d971e75a98bf8a8508131727682ce929e4bd70e9022af4fd47d75e9507de
+  languageName: node
+  linkType: hard
+
+"emojibase@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "emojibase@npm:6.1.0"
+  checksum: 0891f608db7134f02cf7fe62b2cd7e7a3561d17401217954a702231d8779099400522a79292e5ebd0219b9928785bf205aa6d8db754b9ec7c9d9657901516a36
   languageName: node
   linkType: hard
 
