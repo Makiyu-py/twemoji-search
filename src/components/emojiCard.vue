@@ -3,7 +3,7 @@
 		<img :src="info.url.png" />
 		<div class="text">
 			<!-- add underlines with no redirects lmao-->
-			<a>{{ info.name }}</a>
+			<a>{{ info.label }}</a>
 		</div>
 		<br />
 		<div class="btns">
